@@ -78,8 +78,8 @@ laserSprite2 = new Sprite(1920, 265, 20, 450, 'l');
        playersprite.rotationLock = true;
 }
 function laser2() {
-    laserSprite3 = new Sprite(1920, 840, 20, 400, 'l');
-laserSprite4 = new Sprite(1920, 240, 20, 300, 'l');
+    laserSprite3 = new Sprite(1920, 740, 20, 600, 'l');
+laserSprite4 = new Sprite(1920, 190, 20, 300, 'l');
     laserSprite3.color = 255,0,0;
     laserSprite3.vel.x = speed;
     laserSprite3.rotationLock = true;
@@ -113,7 +113,7 @@ wallSprite2 = new Sprite(1920, 265, 200, 450, 'l');
 function laserRotated() {
     random = Math.random();
     random = random * 500
-    random = random + 100
+    random = random + 150
     laserRandom3 = new Sprite(1920, random, 20, 300, 'l');
     randomAngle = Math.random();
     randomAngle = randomAngle * 90;
@@ -191,7 +191,7 @@ if (laserRandom3.x < 0) {
                speed = speed - 0.2;
         }
         if (spawnspeed > 30) {
-            spawnspeed = spawnspeed - 1;
+            spawnspeed = spawnspeed - 3;
         }
     }
 	background(255, 200, 200); 
@@ -214,14 +214,15 @@ if (laserRandom3.x < 0) {
                      laserRandom1.x = -500;
                      laserRandom3.vel.x = -500;
                      laserRandom3.x = -500;
+                     spawnspeed = 50;
         pause = 0;
         console.log("active");
         score = 0
  }
     if (pause < 1) {
         if (kb.pressing ('up')) {
-             if (playersprite.vel.y > -6) {
-         playersprite.vel.y = -6;
+             if (playersprite.vel.y > -4) {
+         playersprite.vel.y = -4;
     }
     if (playersprite.vel.y > -15) {
         playersprite.vel.y = playersprite.vel.y + -0.5;
@@ -255,6 +256,11 @@ if (kb.released ('up')) {
     }
          if (playersprite.collides(laserRandom3)) {
        killscreen();
+    }
+    if (playersprite.collides(wallSprite2)) {
+         if (playersprite.x < wallSprite2.x - 100) {
+       killscreen();
+    }
     }
      if (pause >= 1) {
        playersprite.vel.x = 0;
