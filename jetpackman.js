@@ -31,7 +31,7 @@ let intervalparts = setInterval(() => {
     }
 }, 100)
 
-world.gravity.y = 20;
+world.gravity.y = 15;
 
 wallLH  = new Sprite(20, height/2, 40, height, 'k');
 
@@ -125,6 +125,7 @@ function laserRotated() {
 function killscreen() {
     console.log("HIT");
         replaySprite.visible = true;
+        replaySprite.static = true;
         replaySprite.y = 540
         replaySprite.x = width/2
 pause = 1;
@@ -200,7 +201,7 @@ if (laserRandom3.x < 0) {
                  replaySprite.y = -500
                  laserSprite.x = -500;
                      laserSprite.vel.x = -3
-                            world.gravity.y = 10;
+                            world.gravity.y = 15;
                               laserSprite2.x = -500;
                      laserSprite2.vel.x = -3
                      laserSprite3.x = -500;
@@ -221,11 +222,8 @@ if (laserRandom3.x < 0) {
  }
     if (pause < 1) {
         if (kb.pressing ('up')) {
-             if (playersprite.vel.y > -4) {
-         playersprite.vel.y = -4;
-    }
     if (playersprite.vel.y > -15) {
-        playersprite.vel.y = playersprite.vel.y + -0.5;
+        playersprite.vel.y = playersprite.vel.y + -1;
     }
 };
 if (kb.released ('up')) {   
@@ -267,8 +265,8 @@ if (kb.released ('up')) {
         playersprite.vel.y = 0;
         world.gravity.y = 0;
  }
- text("Score: "+ score, 50, 50);
- text("Highscore: "+ highscore, 50, 70);
+ text("Score: "+ score + "m", 50, 50);
+ text("Highscore: "+ highscore + "m", 50, 70);
 }
 /*******************************************************/
 //  END OF APP
