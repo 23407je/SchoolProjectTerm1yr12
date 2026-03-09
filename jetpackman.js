@@ -9,12 +9,13 @@ let pause = 0;
 let score = 0;
 let obstacletime = 0;
 let choice = 0;
-let laserposition = [];
+let laserposition = 0;
 let speed = -3;
 save = 0;
 let spawnspeed = 50;
-let random = [];
-let randomAngle = [];
+let random = 0;
+let randomAngle = 0;
+let highscore = 0;
 function setup() {
 	console.log("setup: ");
 cnv = new Canvas(1920, 1080);
@@ -30,7 +31,7 @@ let intervalparts = setInterval(() => {
     }
 }, 100)
 
-world.gravity.y = 10;
+world.gravity.y = 20;
 
 wallLH  = new Sprite(20, height/2, 40, height, 'k');
 
@@ -46,19 +47,23 @@ playersprite.color = 255,200,200;
 
 playersprite.rotationSpeed = 2;
 //***** replay buttons visiblility*/
-laserSprite = new Sprite(500, -500, 20, 400, 'l');
-laserSprite2 = new Sprite(500, -500, 20, 450, 'l');
-     laserSprite3 = new Sprite(500, -500, 20, 400, 'l');
-laserSprite4 = new Sprite(500, -500, 20, 300, 'l');
-laserRandom1 = new Sprite(500, -500, 20, 300, 'l');
+laserSprite = new Sprite(-500, -500, 20, 400, 'l');
+laserSprite2 = new Sprite(-500, -500, 20, 450, 'l');
+     laserSprite3 = new Sprite(-500, -500, 20, 400, 'l');
+laserSprite4 = new Sprite(-500, -500, 20, 300, 'l');
+laserRandom1 = new Sprite(-500, -500, 20, 300, 'l');
  laserSprite.color = 255,0,0;
     laserSprite2.color = 255,0,0;
  wallSprite = new Sprite(-500, -500, 200, 400, 'l');
 wallSprite2 = new Sprite(-500, -500, 200, 450, 'l');
-replaySprite = new Sprite(width/2, height/2, 150, 150);
+replaySprite = new Sprite(width/2, -500, 150, 150);
+laserRandom3 = new Sprite(-500, -500, 150, 150);
 replaySprite.visible = true;
 replaySprite.rotationLock = true;
 playersprite.rotationLock = true;
+laserRandom3.rotationLock = true;
+replaySprite.collision = false;
+
 }
 function laser() {
     laserSprite = new Sprite(1920, 840, 20, 400, 'l');
@@ -74,7 +79,7 @@ laserSprite2 = new Sprite(1920, 265, 20, 450, 'l');
 }
 function laser2() {
     laserSprite3 = new Sprite(1920, 840, 20, 400, 'l');
-laserSprite4 = new Sprite(1920, 340, 20, 300, 'l');
+laserSprite4 = new Sprite(1920, 240, 20, 300, 'l');
     laserSprite3.color = 255,0,0;
     laserSprite3.vel.x = speed;
     laserSprite3.rotationLock = true;
@@ -109,17 +114,19 @@ function laserRotated() {
     random = Math.random();
     random = random * 500
     random = random + 100
-    laserRandom = new Sprite(500, random, 20, 300, 'l');
-    let randomAngle = Math.random();
-    randomAngle = randomAngle * 90
-    laserRandom.rotation = randomAngle;
-    laserRandom.vel.x = -3
+    laserRandom3 = new Sprite(1920, random, 20, 300, 'l');
+    randomAngle = Math.random();
+    randomAngle = randomAngle * 90;
+    laserRandom3.rotation = randomAngle;
+    console.log(randomAngle);
+    laserRandom3.vel.x = speed;
+    laserRandom3.rotationLock = true;
 }
 function killscreen() {
     console.log("HIT");
         replaySprite.visible = true;
-        replaySprite.y == height/2
-        replaySprite.x == width/2
+        replaySprite.y = 540
+        replaySprite.x = width/2
 pause = 1;
 laserSprite.vel.x = 0;
 laserSprite.vel.y = 0;
@@ -136,12 +143,16 @@ wallSprite.vel.y = 0;
  wallSprite2.vel.x = 0;
 wallSprite2.vel.y = 0;
 obstacletime = 0;
-
+laserRandom3.vel.y = 0;
+laserRandom3.vel.x = 0;
 }
 /*******************************************************/
 // draw()
 /*******************************************************/
 function draw() {
+    if (score > highscore) {
+    highscore = score;
+}
     playersprite.x = 100;
     wallSprite.y = 840
        wallSprite2.y = 265
@@ -149,36 +160,32 @@ function draw() {
         save = choice;
        choice = Math.random();
     choice = choice * 25
-    if (save >= 0 && save < 5 && choice >= 0 && choice < 5) {
-         choice = choice + 5;
-    }
-    if (save >= 5 && save < 10 && choice >= 5 && choice < 10) {
-         choice = choice + 5;
-    }
-    if (save >= 10 && save <= 15 && choice >= 10 && choice < 15) {
-         choice = choice + 5;
-    }
-      if (save >= 15 && save < 20 && choice >= 15 && choice < 20) {
-         choice = choice + 5;
-    }
-        if (save >= 20 && save <= 225 && choice >= 20 && choice <= 25) {
-         choice = choice - 5;
-    }
-      if (choice >= 5 && choice < 10) {
+    if (laserSprite.x < 0) {
+        if (choice >= 5 && choice < 10) {
           laser();
       }
-      if (choice < 5 && choice >= 0) {
+    }
+if (laserSprite3.x < 0) {
+  if (choice < 5 && choice >= 0) {
           laser2();
       }
-      if (choice >= 10 && choice < 15) {
+}
+if (laserRandom1.x < 0) {
+     if (choice >= 10 && choice < 15) {
             laserRandom();
         }
-        if (choice >= 15 && choice < 20) {
+}
+if (wallSprite.x < 0) {
+    if (choice >= 15 && choice < 20) {
             wall();
         }
-             if (choice >= 20 && choice <= 25) {
-            laserRandom();
+}
+if (laserRandom3.x < 0) {
+        if (choice >= 20 && choice <= 25) {
+            laserRotated();
         }
+}
+
         obstacletime = 0;
         if (speed < 6) {
                speed = speed - 0.2;
@@ -190,6 +197,7 @@ function draw() {
 	background(255, 200, 200); 
          if (replaySprite.mouse.pressed() && replaySprite.visible == true) {
                  replaySprite.visible = false;
+                 replaySprite.y = -500
                  laserSprite.x = -500;
                      laserSprite.vel.x = -3
                             world.gravity.y = 10;
@@ -203,14 +211,17 @@ function draw() {
                      wallSprite.vel.x = -3
                       wallSprite2.x = -500;
                      wallSprite2.vel.x = -3
+                     laserRandom1.x = -500;
+                     laserRandom3.vel.x = -500;
+                     laserRandom3.x = -500;
         pause = 0;
         console.log("active");
         score = 0
  }
     if (pause < 1) {
         if (kb.pressing ('up')) {
-             if (playersprite.vel.y > -3) {
-         playersprite.vel.y = -3;
+             if (playersprite.vel.y > -6) {
+         playersprite.vel.y = -6;
     }
     if (playersprite.vel.y > -15) {
         playersprite.vel.y = playersprite.vel.y + -0.5;
@@ -223,34 +234,35 @@ if (kb.released ('up')) {
 };
     }
            if (playersprite.collides(laserSprite)) {
-           
+           killscreen();
     }
     if (playersprite.collides(laserSprite2)) {
-       
+       killscreen();
     }
     if (playersprite.collides(laserSprite3)) {
-       
+       killscreen();
     }
         if (playersprite.collides(laserSprite4)) {
-        
+        killscreen();
     }
           if (playersprite.collides(laserRandom1)) {
-       
+       killscreen();
     }
       if (playersprite.collides(wallSprite)) {
         if (playersprite.x < wallSprite.x - 100) {
-       
+       killscreen();
     }
     }
-         if (playersprite.collides(laserRotated)) {
-       
+         if (playersprite.collides(laserRandom3)) {
+       killscreen();
     }
      if (pause >= 1) {
        playersprite.vel.x = 0;
         playersprite.vel.y = 0;
         world.gravity.y = 0;
  }
- text("Score: "+score, 50, 50);
+ text("Score: "+ score, 50, 50);
+ text("Highscore: "+ highscore, 50, 70);
 }
 /*******************************************************/
 //  END OF APP
