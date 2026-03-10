@@ -1,7 +1,7 @@
 /*******************************************************/
-// P5.play: minigame
+// P5.play: Project
 /*******************************************************/
-	
+   
 /*******************************************************/
 // setup()
 /*******************************************************/
@@ -17,8 +17,9 @@ let random = 0;
 let randomAngle = 0;
 let highscore = 0;
 function setup() {
-	console.log("setup: ");
+    console.log("setup: ");
 cnv = new Canvas(1920, 1080);
+
 
 let intervalID = setInterval(() => {
     if (pause < 1) {
@@ -31,49 +32,52 @@ let intervalparts = setInterval(() => {
     }
 }, 100)
 
+
 world.gravity.y = 15;
 
-wallLH  = new Sprite(20, height/2, 40, height, 'k');
-
-wallRH  = new Sprite(1900, 540, 40, 1080, 'k');
 
 wallTop = new Sprite(960, 20, 1920, 40, 'k');
 
+
 wallBot = new Sprite(960, 1060, 1920, 40, 'k');
+
 
 playersprite = new Sprite(100, 1020, 40, 40, 'd');
 
+
 playersprite.color = 255,200,200;
+
 
 playersprite.rotationSpeed = 2;
 //***** replay buttons visiblility*/
-laserSprite = new Sprite(-500, -500, 20, 400, 'l');
-laserSprite2 = new Sprite(-500, -500, 20, 450, 'l');
-     laserSprite3 = new Sprite(-500, -500, 20, 400, 'l');
-laserSprite4 = new Sprite(-500, -500, 20, 300, 'l');
-laserRandom1 = new Sprite(-500, -500, 20, 300, 'l');
+laserSprite = new Sprite(-500, 2500, 20, 400, 'l');
+laserSprite2 = new Sprite(-500, 2500, 20, 450, 'l');
+     laserSprite3 = new Sprite(-500, 2500, 20, 400, 'l');
+laserSprite4 = new Sprite(-500, 2500, 20, 300, 'l');
+laserRandom1 = new Sprite(-500, 2500, 20, 300, 'l');
  laserSprite.color = 255,0,0;
     laserSprite2.color = 255,0,0;
- wallSprite = new Sprite(-500, -500, 200, 400, 'l');
-wallSprite2 = new Sprite(-500, -500, 200, 450, 'l');
+ wallSprite = new Sprite(-500, 2500, 200, 400, 'l');
+wallSprite2 = new Sprite(-500, 2500, 200, 450, 'l');
 replaySprite = new Sprite(width/2, -500, 150, 150);
-laserRandom3 = new Sprite(-500, -500, 150, 150);
+laserRandom3 = new Sprite(-500, 2500, 150, 150);
 replaySprite.visible = true;
 replaySprite.rotationLock = true;
 playersprite.rotationLock = true;
 laserRandom3.rotationLock = true;
-replaySprite.collision = false;
+
 
 }
 function laser() {
-    laserSprite = new Sprite(1920, 840, 20, 400, 'l');
-laserSprite2 = new Sprite(1920, 265, 20, 450, 'l');
+    laserSprite = new Sprite(2200, 840, 20, 400, 'l');
+laserSprite2 = new Sprite(2200, 265, 20, 450, 'l');
     laserSprite.color = 255,0,0;
     laserSprite.vel.x = speed;
     laserSprite.rotationLock = true;
     laserSprite2.color = 255,0,0;
     laserSprite2.vel.x = speed;
     laserSprite2.rotationLock = true;
+
 
        playersprite.rotationLock = true;
 }
@@ -162,40 +166,49 @@ function draw() {
        choice = Math.random();
     choice = choice * 25
     if (laserSprite.x < 0) {
+            laserSprite.vel.x = 0
+            laserSprite2.vel.x - 0
         if (choice >= 5 && choice < 10) {
           laser();
       }
     }
 if (laserSprite3.x < 0) {
+    laserSprite3.vel.x = 0
+    laserSprite4.vel.x = 0
   if (choice < 5 && choice >= 0) {
           laser2();
       }
 }
 if (laserRandom1.x < 0) {
+    laserRandom1.vel.x = 0
      if (choice >= 10 && choice < 15) {
             laserRandom();
         }
 }
 if (wallSprite.x < 0) {
+    wallSprite.vel.x = 0
+    wallSprite2.vel.x = 0
     if (choice >= 15 && choice < 20) {
             wall();
         }
 }
 if (laserRandom3.x < 0) {
+    laserRandom3.vel.x = 0
         if (choice >= 20 && choice <= 25) {
             laserRotated();
         }
 }
 
+
         obstacletime = 0;
-        if (speed < 6) {
+        if (speed > -12) {
                speed = speed - 0.2;
         }
         if (spawnspeed > 30) {
             spawnspeed = spawnspeed - 3;
         }
     }
-	background(255, 200, 200); 
+    background(255, 200, 200);
          if (replaySprite.mouse.pressed() && replaySprite.visible == true) {
                  replaySprite.visible = false;
                  replaySprite.y = -500
@@ -216,17 +229,18 @@ if (laserRandom3.x < 0) {
                      laserRandom3.vel.x = -500;
                      laserRandom3.x = -500;
                      spawnspeed = 50;
+                     speed = -3;
         pause = 0;
         console.log("active");
         score = 0
  }
     if (pause < 1) {
         if (kb.pressing ('up')) {
-    if (playersprite.vel.y > -15) {
+    if (playersprite.vel.y > -10) {
         playersprite.vel.y = playersprite.vel.y + -1;
     }
 };
-if (kb.released ('up')) {   
+if (kb.released ('up')) {  
     if (playersprite.vel.y > 0) {
       playersprite.vel.y = playersprite.vel.y + 2;  
     }
@@ -271,3 +285,4 @@ if (kb.released ('up')) {
 /*******************************************************/
 //  END OF APP
 /*******************************************************/
+
