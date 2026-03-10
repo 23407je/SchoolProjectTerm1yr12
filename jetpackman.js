@@ -42,7 +42,7 @@ wallTop = new Sprite(960, 20, 1920, 40, 'k');
 wallBot = new Sprite(960, 1060, 1920, 40, 'k');
 
 
-playersprite = new Sprite(100, 1020, 40, 40, 'd');
+playersprite = new Sprite(100, 1020, 40, 60, 'd');
 
 
 playersprite.color = 255,200,200;
@@ -82,7 +82,7 @@ laserSprite2 = new Sprite(2200, 265, 20, 450, 'l');
        playersprite.rotationLock = true;
 }
 function laser2() {
-    laserSprite3 = new Sprite(1920, 740, 20, 600, 'l');
+    laserSprite3 = new Sprite(1920, 765, 20, 550, 'l');
 laserSprite4 = new Sprite(1920, 190, 20, 300, 'l');
     laserSprite3.color = 255,0,0;
     laserSprite3.vel.x = speed;
@@ -94,7 +94,7 @@ laserSprite4 = new Sprite(1920, 190, 20, 300, 'l');
 }
 function laserRandom() {
     laserposition = Math.random();
-    laserposition = laserposition * 500
+    laserposition = laserposition * 750
     laserposition = laserposition + 190;
     laserRandom1 = new Sprite(1920, laserposition, 20, 300, 'l');
     laserRandom1.color = 255,0,0;
@@ -116,7 +116,7 @@ wallSprite2 = new Sprite(1920, 265, 200, 450, 'l');
 }
 function laserRotated() {
     random = Math.random();
-    random = random * 500
+    random = random * 750
     random = random + 150
     laserRandom3 = new Sprite(1920, random, 20, 300, 'l');
     randomAngle = Math.random();
@@ -165,34 +165,34 @@ function draw() {
         save = choice;
        choice = Math.random();
     choice = choice * 25
-    if (laserSprite.x < 0) {
+    if (laserSprite.x < -100) {
             laserSprite.vel.x = 0
             laserSprite2.vel.x - 0
         if (choice >= 5 && choice < 10) {
           laser();
       }
     }
-if (laserSprite3.x < 0) {
+if (laserSprite3.x < -100) {
     laserSprite3.vel.x = 0
     laserSprite4.vel.x = 0
   if (choice < 5 && choice >= 0) {
           laser2();
       }
 }
-if (laserRandom1.x < 0) {
+if (laserRandom1.x < -100) {
     laserRandom1.vel.x = 0
      if (choice >= 10 && choice < 15) {
             laserRandom();
         }
 }
-if (wallSprite.x < 0) {
+if (wallSprite.x < -100) {
     wallSprite.vel.x = 0
     wallSprite2.vel.x = 0
     if (choice >= 15 && choice < 20) {
             wall();
         }
 }
-if (laserRandom3.x < 0) {
+if (laserRandom3.x < -100) {
     laserRandom3.vel.x = 0
         if (choice >= 20 && choice <= 25) {
             laserRotated();
@@ -201,7 +201,7 @@ if (laserRandom3.x < 0) {
 
 
         obstacletime = 0;
-        if (speed > -12) {
+        if (speed > -20) {
                speed = speed - 0.2;
         }
         if (spawnspeed > 30) {
