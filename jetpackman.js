@@ -21,8 +21,11 @@ function setup() {
 cnv = new Canvas(1920, 1080);
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
 let intervalID = setInterval(() => {
     if (pause < 1) {
            score = score + 1
@@ -35,16 +38,22 @@ let intervalparts = setInterval(() => {
 }, 100)
 
 
+<<<<<<< HEAD
 
 
 world.gravity.y = 15;
 
 
 
+=======
+world.gravity.y = 15;
+
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
 
 wallTop = new Sprite(960, 20, 1920, 40, 'k');
 
 
+<<<<<<< HEAD
 
 
 wallBot = new Sprite(960, 1060, 1920, 40, 'k');
@@ -56,12 +65,22 @@ playersprite = new Sprite(100, 1020, 40, 60, 'd');
 
 
 
+=======
+wallBot = new Sprite(960, 1060, 1920, 40, 'k');
+
+
+playersprite = new Sprite(100, 1020, 40, 60, 'd');
+
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
 
 playersprite.color = 255,200,200;
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
 playersprite.rotationSpeed = 2;
 //***** replay buttons visiblility*/
 laserSprite = new Sprite(-500, 2500, 20, 400, 'l');
@@ -75,15 +94,21 @@ laserRandom1 = new Sprite(-500, 2500, 20, 300, 'l');
 wallSprite2 = new Sprite(-500, 2500, 200, 450, 'l');
 replaySprite = new Sprite(width/2, -500, 150, 150);
 laserRandom3 = new Sprite(-500, 2500, 150, 150);
+<<<<<<< HEAD
 beambox = new Sprite(20, 180, 40, 40);
 beambox.static = true;
+=======
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
 replaySprite.visible = true;
 replaySprite.rotationLock = true;
 playersprite.rotationLock = true;
 laserRandom3.rotationLock = true;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
 
 }
 function laser() {
@@ -97,8 +122,11 @@ laserSprite2 = new Sprite(2200, 265, 20, 450, 'l');
     laserSprite2.rotationLock = true;
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
        playersprite.rotationLock = true;
 }
 function laser2() {
@@ -195,34 +223,54 @@ function draw() {
         save = choice;
        choice = Math.random();
     choice = choice * 25
+<<<<<<< HEAD
     if (laserSprite.x < 0) {
+=======
+    if (laserSprite.x < -100) {
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
             laserSprite.vel.x = 0
             laserSprite2.vel.x - 0
         if (choice >= 5 && choice < 10) {
           laser();
       }
     }
+<<<<<<< HEAD
 if (laserSprite3.x < 0) {
+=======
+if (laserSprite3.x < -100) {
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
     laserSprite3.vel.x = 0
     laserSprite4.vel.x = 0
   if (choice < 5 && choice >= 0) {
           laser2();
       }
 }
+<<<<<<< HEAD
 if (laserRandom1.x < 0) {
+=======
+if (laserRandom1.x < -100) {
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
     laserRandom1.vel.x = 0
      if (choice >= 10 && choice < 15) {
             laserRandom();
         }
 }
+<<<<<<< HEAD
 if (wallSprite.x < -0) {
+=======
+if (wallSprite.x < -100) {
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
     wallSprite.vel.x = 0
     wallSprite2.vel.x = 0
     if (choice >= 15 && choice < 20) {
             wall();
         }
 }
+<<<<<<< HEAD
 if (laserRandom3.x < -0) {
+=======
+if (laserRandom3.x < -100) {
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
     laserRandom3.vel.x = 0
         if (choice >= 20 && choice <= 25) {
             laserRotated();
@@ -230,10 +278,15 @@ if (laserRandom3.x < -0) {
 }
 
 
+<<<<<<< HEAD
 
 
         obstacletime = 0;
         if (speed > -900) {
+=======
+        obstacletime = 0;
+        if (speed > -20) {
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
                speed = speed - 0.2;
         }
         if (spawnspeed > 30) {
@@ -302,7 +355,11 @@ if (kb.released ('up')) {
        killscreen();
     }
     if (playersprite.collides(wallSprite2)) {
+<<<<<<< HEAD
          if (playersprite.x < wallSprite2.x - 100 && playersprite.y > 491) {
+=======
+         if (playersprite.x < wallSprite2.x - 100) {
+>>>>>>> 7ecb5cf3398e56064c0533e995a69a37a2f7d110
        killscreen();
     }
     }
@@ -317,3 +374,4 @@ if (kb.released ('up')) {
 /*******************************************************/
 //  END OF APP
 /*******************************************************/
+
