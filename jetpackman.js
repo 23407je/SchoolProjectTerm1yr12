@@ -63,7 +63,7 @@ playersprite.color = 255,200,200;
 
 
 playersprite.rotationSpeed = 2;
-//***** replay buttons visiblility*/
+
 laserSprite = new Sprite(-500, 2500, 20, 400, 'l');
 laserSprite2 = new Sprite(-500, 2500, 20, 450, 'l');
      laserSprite3 = new Sprite(-500, 2500, 20, 400, 'l');
@@ -86,6 +86,7 @@ laserRandom3.rotationLock = true;
 
 
 }
+//**** object functions */
 function laser() {
     laserSprite = new Sprite(2200, 840, 20, 400, 'l');
 laserSprite2 = new Sprite(2200, 265, 20, 450, 'l');
@@ -146,6 +147,7 @@ function laserRotated() {
     laserRandom3.vel.x = speed;
     laserRandom3.rotationLock = true;
 }
+//**** killfunction */
 function killscreen() {
     console.log("HIT");
         replaySprite.visible = true;
@@ -175,6 +177,7 @@ laserRandom3.vel.x = 0;
 // draw()
 /*******************************************************/
 function draw() {
+    //**** contant speed for the objects */
     if (pause < 1) {
          wallSprite2.vel.x = speed;
              wallSprite.vel.x = speed;
@@ -185,12 +188,13 @@ function draw() {
                                  laserSprite2.vel.x = speed;
                                      laserSprite.vel.x = speed;
     }
+    //**** saving highscore */
     if (score > highscore) {
     highscore = score;
 }
+//**** stops the player from moving on the x axis when hit */
     playersprite.x = 100;
-    wallSprite.y = 840
-       wallSprite2.y = 265
+    //****spawner for obstacles */
        if (obstacletime >= spawnspeed) {
         save = choice;
        choice = Math.random();
@@ -241,6 +245,7 @@ if (laserRandom3.x < -0) {
         }
     }
     background(255, 200, 200);
+    //**** replay option */
          if (replaySprite.mouse.pressed() && replaySprite.visible == true) {
                  replaySprite.visible = false;
                  replaySprite.y = -500
@@ -266,6 +271,7 @@ if (laserRandom3.x < -0) {
         console.log("active");
         score = 0
  }
+ //****keybinds */
     if (pause < 1) {
         if (kb.pressing ('up')) {
     if (playersprite.vel.y > -10) {
@@ -277,8 +283,9 @@ if (kb.released ('up')) {
       playersprite.vel.y = playersprite.vel.y + 2;  
     }
 };
+//**** detects when you collide with a killable object */
     }
-           if (playersprite.collides(laserSprite)) {
+    if (playersprite.collides(laserSprite)) {
            killscreen();
     }
     if (playersprite.collides(laserSprite2)) {
@@ -287,18 +294,18 @@ if (kb.released ('up')) {
     if (playersprite.collides(laserSprite3)) {
        killscreen();
     }
-        if (playersprite.collides(laserSprite4)) {
+    if (playersprite.collides(laserSprite4)) {
         killscreen();
     }
           if (playersprite.collides(laserRandom1)) {
        killscreen();
     }
-      if (playersprite.collides(wallSprite)) {
+    if (playersprite.collides(wallSprite)) {
         if (playersprite.x < wallSprite.x - 100 && playersprite.y < 839) {
        killscreen();
     }
     }
-         if (playersprite.collides(laserRandom3)) {
+    if (playersprite.collides(laserRandom3)) {
        killscreen();
     }
     if (playersprite.collides(wallSprite2)) {
